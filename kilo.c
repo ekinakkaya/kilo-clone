@@ -37,6 +37,7 @@ void enable_raw_mode() {
      * ICANON   canonical mode
      * ISIG     Ctrl-c and Ctrl-v signals
      * IEXTEN   Ctrl-v
+     *
      */
     raw.c_lflag &= ~(ECHO | ICANON | ISIG | IEXTEN);
 
