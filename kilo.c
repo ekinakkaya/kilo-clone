@@ -18,14 +18,20 @@ void enable_raw_mode() {
     atexit(disable_raw_mode);
 
     struct termios raw = original_termios;
-    /* &= (bitwise-AND)
-     * ~  (bitwise-OR)
-     * ECHO : 00000000000000000000000000001000
-     * ~ECHO: 11111111111111111111111111110111
-     * original_termios.c_lflag & ~ECHO will be the same except the 4th bit
-     * will be zero.
+
+    /* disable
+     * IXON     Ctrl-s and Ctrl-q
      */
-    raw.c_lflag &= ~(ECHO | ICANON);
+    raw.c_iflag &= ~(IXON);
+
+
+    /* disable
+     * ECHO     echo
+     * ICANON   canonical mode
+     * ISIG     Ctrl-c and Ctrl-v signals
+     * IEXTEN   Ctrl-v
+     */
+    raw.c_lflag &= ~(ECHO | ICANON | ISIG | IEXTEN);
 
     tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
 }
