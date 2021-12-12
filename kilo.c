@@ -63,7 +63,7 @@ int main() {
     enable_raw_mode();
 
 
-    while ( == 1 && c != 'q') {
+    while (1) {
         char c = '\0';
         read(STDIN_FILENO, &c, 1);
         
