@@ -21,8 +21,9 @@ void enable_raw_mode() {
 
     /* disable
      * IXON     Ctrl-s and Ctrl-q
+     * ICRNL    carriage return new line
      */
-    raw.c_iflag &= ~(IXON);
+    raw.c_iflag &= ~(ICRNL | IXON);
 
 
     /* disable
