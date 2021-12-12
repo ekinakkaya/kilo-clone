@@ -24,7 +24,7 @@ void enable_raw_mode() {
      * original_termios.c_lflag & ~ECHO will be the same except the 4th bit
      * will be zero.
      */
-    raw.c_lflag &= ~(ECHO);
+    raw.c_lflag &= ~(ECHO | ICANON);
 
     tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
 }
