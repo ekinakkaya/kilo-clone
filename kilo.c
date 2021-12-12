@@ -32,6 +32,9 @@ void enable_raw_mode() {
 
 
 int main() {
+    enable_raw_mode();
+
+
     char c;
     while (read(STDIN_FILENO, &c, 1) == 1 && c != 'q');
 
